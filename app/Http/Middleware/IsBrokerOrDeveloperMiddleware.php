@@ -17,7 +17,7 @@ class IsBrokerOrDeveloperMiddleware
     {
         $account = auth('account')->user();
 
-        if ($account->BrokerAccount || $account->IsDeveloperAccount) {
+        if ($account->IsBrokerOrDeveloperAccount) {
             return $next($request);
         } else {
             abort(401);
