@@ -212,6 +212,15 @@ class RealEstateServiceProvider extends ServiceProvider
                     'permissions' => ['property.index'],
                 ])
                 ->registerItem([
+                    'id' => 'cms-plugins-orders',
+                    'priority' => 0,
+                    'parent_id' => 'cms-plugins-real-estate',
+                    'name' => 'plugins/real-estate::property.orders',
+                    'icon' => null,
+                    'url' => route('order.index'),//temp
+                    'permissions' => ['order.index'],//temp
+                ])
+                ->registerItem([
                     'id' => 'cms-plugins-project',
                     'priority' => 1,
                     'parent_id' => 'cms-plugins-real-estate',

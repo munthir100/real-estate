@@ -2,6 +2,7 @@
 
 return [
     'name' => 'Properties',
+    'orders' => 'Order',
     'create' => 'New property',
     'edit' => 'Edit property',
     'form' => [

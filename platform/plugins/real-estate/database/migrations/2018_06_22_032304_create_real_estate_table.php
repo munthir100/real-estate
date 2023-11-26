@@ -72,6 +72,23 @@ return new class() extends Migration
             $table->timestamps();
         });
 
+
+        Schema::create('re_orders', function (Blueprint $table) {
+            $table->id();
+            $table->string('phone', 60);
+            $table->string('type', 20)->default('sale');
+            $table->foreignId('city_id')->nullable();
+            $table->string('status', 60)->default('selling');
+            $table->foreignId('category_id')->nullable();
+            $table->foreignId('author_id')->nullable();
+            $table->string('author_type', 255)->default(addslashes(User::class));
+            $table->string('moderation_status', 60)->default('pending');
+            $table->string('note');
+            $table->timestamps();
+        });
+
+        
+
         Schema::create('re_features', function (Blueprint $table) {
             $table->id();
             $table->string('name', 120);

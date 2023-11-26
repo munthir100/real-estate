@@ -11,6 +11,10 @@ return new class () extends Migration {
             $table->string('unique_id')->nullable()->unique();
         });
 
+        Schema::table('re_orders', function (Blueprint $table) {
+            $table->string('unique_id')->nullable()->unique();
+        });
+
         Schema::table('re_projects', function (Blueprint $table) {
             $table->string('unique_id')->nullable()->unique();
         });
@@ -19,6 +23,10 @@ return new class () extends Migration {
     public function down(): void
     {
         Schema::table('re_properties', function (Blueprint $table) {
+            $table->dropColumn('unique_id');
+        });
+
+        Schema::table('re_orders', function (Blueprint $table) {
             $table->dropColumn('unique_id');
         });
 

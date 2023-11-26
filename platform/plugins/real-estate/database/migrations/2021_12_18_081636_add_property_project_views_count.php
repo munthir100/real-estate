@@ -13,6 +13,12 @@ return new class () extends Migration {
             });
         }
 
+        if (! Schema::hasColumn('re_orders', 'views')) {
+            Schema::table('re_orders', function (Blueprint $table) {
+                $table->integer('views')->unsigned()->default(0);
+            });
+        }
+
         if (! Schema::hasColumn('re_projects', 'views')) {
             Schema::table('re_projects', function (Blueprint $table) {
                 $table->integer('views')->unsigned()->default(0);
@@ -24,6 +30,12 @@ return new class () extends Migration {
     {
         if (Schema::hasColumn('re_properties', 'views')) {
             Schema::table('re_properties', function (Blueprint $table) {
+                $table->dropColumn('views');
+            });
+        }
+
+        if (Schema::hasColumn('re_orders', 'views')) {
+            Schema::table('re_orders', function (Blueprint $table) {
                 $table->dropColumn('views');
             });
         }

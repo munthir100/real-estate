@@ -1,20 +1,22 @@
 <?php
 
-use Botble\Base\Facades\BaseHelper;
 use Botble\Location\Models\City;
 use Botble\Location\Models\State;
+use Botble\Base\Facades\BaseHelper;
+use Botble\Slug\Facades\SlugHelper;
+use Botble\RealEstate\Models\Account;
+use Botble\RealEstate\Models\Project;
+use Illuminate\Support\Facades\Route;
+use Botble\RealEstate\Models\Category;
+use Botble\RealEstate\Models\Property;
 use Botble\RealEstate\Facades\RealEstateHelper;
 use Botble\RealEstate\Http\Controllers\CouponController;
-use Botble\RealEstate\Http\Controllers\CustomFieldController;
-use Botble\RealEstate\Http\Controllers\Fronts\CouponController as CouponControllerFront;
-use Botble\RealEstate\Http\Controllers\Fronts\ReviewController;
 use Botble\RealEstate\Http\Controllers\InvoiceController;
-use Botble\RealEstate\Models\Account;
-use Botble\RealEstate\Models\Category;
-use Botble\RealEstate\Models\Project;
-use Botble\RealEstate\Models\Property;
-use Botble\Slug\Facades\SlugHelper;
-use Illuminate\Support\Facades\Route;
+use Botble\RealEstate\Http\Controllers\CustomFieldController;
+use Botble\RealEstate\Http\Controllers\Fronts\ReviewController;
+use Botble\RealEstate\Http\Controllers\DuplicateOrderController;
+use Botble\RealEstate\Http\Controllers\OrderdPropertiesController;
+use Botble\RealEstate\Http\Controllers\Fronts\CouponController as CouponControllerFront;
 
 Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' => ['web', 'core']], function () {
     Route::group([
@@ -42,6 +44,22 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
                 'as' => 'duplicate-property',
                 'uses' => 'DuplicatePropertyController@__invoke',
                 'permission' => 'property.edit',
+            ]);
+        });
+
+        Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
+            Route::resource('', OrderdPropertiesController::class)
+                ->parameters(['' => 'order']);
+
+            Route::post('duplicate-property/{id}', [
+                'as' => 'duplicate-property',
+                'uses' => 'DuplicatePropertyController@__invoke',
+                'permission' => 'property.edit',
+            ]);
+            Route::post('duplicate-order/{id}', [
+                'as' => 'duplicate-order',
+                'uses' => DuplicateOrderController::class, '__invoke',
+                'permission' => 'order.edit',
             ]);
         });
 
@@ -259,7 +277,7 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
             Route::match(['POST', 'GET'], SlugHelper::getPrefix(Property::class, 'properties') . '/' . SlugHelper::getPrefix(State::class, 'state') . '/{slug?}', 'PublicController@getPropertiesByState')
                 ->name('public.properties-by-state');
 
-            if (! RealEstateHelper::isDisabledPublicProfile()) {
+            if (!RealEstateHelper::isDisabledPublicProfile()) {
                 Route::get(SlugHelper::getPrefix(Account::class, 'agents'), 'PublicController@getAgents')->name(
                     'public.agents'
                 );

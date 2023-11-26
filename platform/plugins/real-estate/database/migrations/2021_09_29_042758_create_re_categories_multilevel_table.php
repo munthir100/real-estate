@@ -22,6 +22,15 @@ return new class () extends Migration {
             });
         }
 
+        if (! Schema::hasTable('re_order_categories')) {
+            Schema::create('re_order_categories', function (Blueprint $table) {
+                $table->foreignId('order_id');
+                $table->foreignId('category_id');
+
+                $table->primary(['order_id', 'category_id'], 'order_categories_primary');
+            });
+        }
+
         if (! Schema::hasTable('re_project_categories')) {
             Schema::create('re_project_categories', function (Blueprint $table) {
                 $table->foreignId('project_id');
@@ -36,6 +45,14 @@ return new class () extends Migration {
             DB::table('re_property_categories')->insert([
                 'property_id' => $property->id,
                 'category_id' => $property->category_id,
+            ]);
+        }
+
+        $orders = DB::table('re_orders')->get();
+        foreach ($orders as $order) {
+            DB::table('re_order_categories')->insert([
+                'order_id' => $order->id,
+                'category_id' => $order->category_id,
             ]);
         }
 
