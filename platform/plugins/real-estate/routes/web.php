@@ -13,6 +13,7 @@ use Botble\RealEstate\Facades\RealEstateHelper;
 use Botble\RealEstate\Http\Controllers\CouponController;
 use Botble\RealEstate\Http\Controllers\InvoiceController;
 use Botble\RealEstate\Http\Controllers\CustomFieldController;
+use Botble\RealEstate\Http\Controllers\AccountOrderController;
 use Botble\RealEstate\Http\Controllers\Fronts\ReviewController;
 use Botble\RealEstate\Http\Controllers\DuplicateOrderController;
 use Botble\RealEstate\Http\Controllers\OrderdPropertiesController;
@@ -441,9 +442,14 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
                         ->name('ajax.package.subscribe');
                 });
 
+                Route::group(['prefix' => 'account/orders', 'as' => 'orders.'], function () {
+                    Route::resource('', AccountOrderController::class)->parameters(['' => 'order']);
+                });
                 Route::group(['prefix' => 'account/properties', 'as' => 'properties.'], function () { // properties in dashboard
                     Route::resource('', 'AccountPropertyController')
                         ->parameters(['' => 'property']);
+
+                        
 
                     Route::post('renew/{id}', [
                         'as' => 'renew',

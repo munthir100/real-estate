@@ -100,6 +100,48 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+                        <div class="col-md-4">
+                            <div class="white">
+                                <div
+                                    class="br2 pa3 bg-light-silver mb3"
+                                    style="box-shadow: 0 1px 1px #ccc;"
+                                >
+                                    <div class="media-body">
+                                        <div class="f3">
+                                            <span
+                                                class="fw6">{{ $user->properties()->where('moderation_status', \Botble\RealEstate\Enums\ModerationStatusEnum::REJECTED)->count() }}</span>
+                                            <span class="fr"><i class="far fa-edit"></i></span>
+                                        </div>
+                                        <p>{{ trans('plugins/real-estate::dashboard.rejected_properties') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                         <div class="col-md-4">
+                            <div class="white">
+                                <div
+                                    class="br2 pa3 bg-light-silver mb3"
+                                    style="box-shadow: 0 1px 1px #ccc;"
+                                >
+                                    <div class="media-body">
+                                        <div class="f3">
+                                            <span
+                                                class="fw6">{{ $user->properties()->where('moderation_status', \Botble\RealEstate\Enums\ModerationStatusEnum::REJECTED)->count() }}</span>
+                                            <span class="fr"><i class="far fa-edit"></i></span>
+                                        </div>
+                                        <p>{{ trans('plugins/real-estate::dashboard.rejected_properties') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div id="app-real-estate">
                         <activity-log-component default-active-tab="activity-logs"></activity-log-component>

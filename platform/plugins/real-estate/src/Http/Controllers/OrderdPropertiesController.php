@@ -51,7 +51,7 @@ class OrderdPropertiesController extends BaseController
         ]);
 
         $order = new Order();
-        $order = $order->fill($request->validated());
+        $order = $order->fill($request->input());
         $order->moderation_status = $request->input('moderation_status');
         $order->save();
 
@@ -86,7 +86,7 @@ class OrderdPropertiesController extends BaseController
         StoreOrderCategoryService $orderCategoryService,
     ) {
         $order = Order::query()->findOrFail($id);
-        $order->fill($request->validated());
+        $order->fill($request->input());
 
         $order->author_type = Account::class;
         $order->moderation_status = $request->input('moderation_status');
