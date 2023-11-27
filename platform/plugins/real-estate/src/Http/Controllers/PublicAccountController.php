@@ -66,7 +66,7 @@ class PublicAccountController extends Controller
             'ajaxSubscribePackage',
         ]);
     }
-
+// test
     public function getDashboard()
     {
         $user = auth('account')->user();
