@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="{{ trans('plugins/real-estate::dashboard.password') }}">
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="********">
                             @if ($errors->has('password'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('password') }}</strong>
@@ -48,15 +48,15 @@
                         </div>
 
                         <div class="form-group">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="{{ trans('plugins/real-estate::dashboard.password-confirmation') }}">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="********">
                         </div>
 
                         <div class="form-group">
                             <select id="account_type_id" class="form-control{{ $errors->has('account_type') ? ' is-invalid' : '' }}" name="account_type_id" required>
-                                <option value="" selected>select account type</option>
-                                <option value="1">broker</option>
-                                <option value="2">seeker</option>
-                                <option value="3">developer</option>
+                                <option value="" selected>{{__('select account type')}}</option>
+                                <option value="1">{{__('Broker')}}</option>
+                                <option value="2">{{__('Seeker')}}</option>
+                                <option value="3">{{__('Developer')}}</option>
                             </select>
                             @if ($errors->has('account_type'))
                             <span class="invalid-feedback">

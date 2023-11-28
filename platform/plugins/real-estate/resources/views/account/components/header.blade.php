@@ -71,7 +71,7 @@
                 @endif
                 <li>
                     <a class="no-underline mr2 black-50 hover-black-70 pv1 ph2 db mr2" href="{{route('public.account.orders.index')}}" title="{{ trans('plugins/real-estate::account-property.properties') }}" style="text-decoration: none; line-height: 32px;">
-                        <i class="fa fa-shopping-cart mr1"></i> {{ trans('plugins/real-estate::dashboard.orders') }}
+                        <i class="fa fa-shopping-cart mr1"></i> {{ trans('plugins/real-estate::order.name') }}
                     </a>
                 </li>
                 <li>

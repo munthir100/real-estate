@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'Properties',
+    'name' => 'Orders',
     'orders' => 'Orders',
     'create' => 'New order',
     'edit' => 'Edit order',

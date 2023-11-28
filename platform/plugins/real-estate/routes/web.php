@@ -388,11 +388,6 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
                         'uses' => 'PublicAccountController@postSecurity',
                     ]);
 
-                    Route::put('security', [
-                        'as' => 'security.phone.change',
-                        'uses' => 'PublicAccountController@changePhone',
-                    ]);
-
                     Route::post('avatar', [
                         'as' => 'avatar',
                         'uses' => 'PublicAccountController@postAvatar',

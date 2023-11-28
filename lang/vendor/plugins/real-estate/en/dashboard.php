@@ -69,6 +69,7 @@ return [
     'password_new' => 'New password',
     'password_new_confirmation' => 'Confirmation password',
     'password_update_btn' => 'Update password',
+    'password_update_success' => 'Password updated',
     'activity_logs' => 'Activity Logs',
     'oops' => 'Oops!',
     'no_activity_logs' => 'You have no activity logs yet',
