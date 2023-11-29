@@ -1,0 +1,38 @@
+<?php return [
+    'name' => 'الطلبات',
+    'orders' => 'الطلبات',
+    'create' => 'طلب جديد',
+    'edit' => 'تعديل الطلب',
+    'views' => 'المشاهدات',
+    'form' => [
+        'type' => 'النوع',
+        'date' => 'التاريخ',
+        'city' => 'المدينة',
+        'category' => 'التصنيف',
+        'categories' => 'التصنيفات',
+        'note' => 'ملاحظة',
+        'phone' => 'الجوال',
+    ],
+    'statuses' => [
+        'not_available' => 'غير متاح',
+        'pre_sale' => 'تجهيز بيع',
+        'selling' => 'بيع',
+        'sold' => 'مباع',
+        'renting' => 'تأجير',
+        'rented' => 'متأجر',
+        'building' => 'بناء',
+    ],
+    'types' => [
+        'sale' => 'بيع',
+        'rent' => 'تأجير',
+    ],
+    'moderation_status' => 'حالة المراجعة',
+    'moderation-statuses' => [
+        'pending' => 'قيد الانتظار',
+        'approved' => 'موافق عليه',
+        'rejected' => 'مرفوض',
+    ],
+    'account' => 'الحساب',
+    'select_account' => 'اختر حساب...',
+    'unique_id' => 'معرف فريد',
+];
