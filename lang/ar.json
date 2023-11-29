@@ -410,5 +410,6 @@
     "select account type":"اختر نوع الحساب",
     "broker": "مسوق عقاري",
     "seeker": "باحث عن عقار",
-    "developer": "مطور عقاري"
+    "developer": "مطور عقاري",
+    "Full Name":"الاسم بالكامل"
 }

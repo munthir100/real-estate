@@ -21,6 +21,15 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <input type="text" class="form-control{{ $errors->has('full_name') ? ' is-invalid' : '' }}" name="full_name" value="{{ old('full_name') }}" placeholder="{{__('Full Name')}}">
+                            @if ($errors->has('full_name'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('full_name') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+
                         <div class="form-group" id="emailField">
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="email@example.com">
                             @if ($errors->has('email'))

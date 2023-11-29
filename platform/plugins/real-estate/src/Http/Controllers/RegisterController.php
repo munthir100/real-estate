@@ -15,11 +15,11 @@ use Botble\Base\Facades\EmailHandler;
 use Botble\RealEstate\Models\Account;
 use Illuminate\Auth\Events\Registered;
 use Botble\SeoHelper\Facades\SeoHelper;
+use Botble\RealEstate\Models\AccountType;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\auth\RegisterRequest;
 use Botble\RealEstate\Facades\RealEstateHelper;
 use Botble\Base\Http\Responses\BaseHttpResponse;
-use Botble\RealEstate\Models\AccountType;
+use Botble\RealEstate\Http\Requests\RegisterRequest;
 use Botble\RealEstate\Notifications\ConfirmEmailNotification;
 
 class RegisterController extends Controller
