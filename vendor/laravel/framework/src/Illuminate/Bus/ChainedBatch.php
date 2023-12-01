@@ -72,19 +72,7 @@ class ChainedBatch implements ShouldQueue
      */
     public function handle()
     {
-        $this->attachRemainderOfChainToEndOfBatch(
-            $this->toPendingBatch()
-        )->dispatch();
-    }
-
-    /**
-     * Convert the chained batch instance into a pending batch.
-     *
-     * @return \Illuminate\Bus\PendingBatch
-     */
-    public function toPendingBatch()
-    {
-        $batch = Container::getInstance()->make(Dispatcher::class)->batch($this->jobs);
+        $batch = new PendingBatch(Container::getInstance(), $this->jobs);
 
         $batch->name = $this->name;
         $batch->options = $this->options;
@@ -97,6 +85,8 @@ class ChainedBatch implements ShouldQueue
             $batch->onConnection($this->connection);
         }
 
+        $this->dispatchRemainderOfChainAfterBatch($batch);
+
         foreach ($this->chainCatchCallbacks ?? [] as $callback) {
             $batch->catch(function (Batch $batch, ?Throwable $exception) use ($callback) {
                 if (! $batch->allowsFailures()) {
@@ -105,16 +95,16 @@ class ChainedBatch implements ShouldQueue
             });
         }
 
-        return $batch;
+        $batch->dispatch();
     }
 
     /**
      * Move the remainder of the chain to a "finally" batch callback.
      *
      * @param  \Illuminate\Bus\PendingBatch  $batch
-     * @return \Illuminate\Bus\PendingBatch
+     * @return
      */
-    protected function attachRemainderOfChainToEndOfBatch(PendingBatch $batch)
+    protected function dispatchRemainderOfChainAfterBatch(PendingBatch $batch)
     {
         if (! empty($this->chained)) {
             $next = unserialize(array_shift($this->chained));
@@ -136,7 +126,5 @@ class ChainedBatch implements ShouldQueue
 
             $this->chained = [];
         }
-
-        return $batch;
     }
 }

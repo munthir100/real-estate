@@ -192,7 +192,7 @@ class EcsCredentialProvider
             if ($host !== $ecsHost
                 && $host !== $eksHost
                 && $host !== self::EKS_SERVER_HOST_IPV6
-                && !$this->isLoopbackAddress(gethostbyname($host))
+                && !$this->isLoopbackAddress($host)
             ) {
                 return false;
             }

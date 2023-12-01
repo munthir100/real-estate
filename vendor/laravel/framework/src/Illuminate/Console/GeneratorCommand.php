@@ -187,10 +187,6 @@ abstract class GeneratorCommand extends Command implements PromptsForMissingInpu
             }
         }
 
-        if (windows_os()) {
-            $path = str_replace('/', '\\', $path);
-        }
-
         $this->components->info(sprintf('%s [%s] created successfully.', $info, $path));
     }
 

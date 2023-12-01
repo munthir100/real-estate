@@ -211,7 +211,7 @@ class Camel
      *
      * @param array $order
      */
-    protected static function getOrderListComparator(array $order): \Closure
+    public static function getOrderListComparator(array $order): \Closure
     {
         return function ($a, $b) use ($order) {
             $indexOfA = array_search($a, $order);
