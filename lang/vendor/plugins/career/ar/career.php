@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name' => 'Careers',
-    'create' => 'New career',
-    'location' => 'Location',
-    'salary' => 'Salary',
+    'name' => 'الوظائف',
+    'create' => 'وظيفة جديدة',
+    'location' => 'الموقع',
+    'salary' => 'الراتب',
 ];

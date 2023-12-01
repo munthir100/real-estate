@@ -106,26 +106,38 @@
                         <div class="col-md-4">
                             <div class="white">
                                 <div
-                                    class="br2 pa3 bg-light-silver mb3"
+                                    class="br2 pa3 bg-light-blue mb3"
                                     style="box-shadow: 0 1px 1px #ccc;"
                                 >
                                     <div class="media-body">
                                         <div class="f3">
                                             <span
-                                                class="fw6">{{ $user->properties()->where('moderation_status', \Botble\RealEstate\Enums\ModerationStatusEnum::REJECTED)->count() }}</span>
-                                            <span class="fr"><i class="far fa-edit"></i></span>
+                                                class="fw6">{{ $user->orders()->where('moderation_status', \Botble\RealEstate\Enums\ModerationStatusEnum::APPROVED)->count() }}</span>
+                                            <span class="fr"><i class="far fa-check-circle"></i></span>
                                         </div>
-                                        <p>{{ trans('plugins/real-estate::dashboard.rejected_properties') }}</p>
+                                        <p>{{ trans('plugins/real-estate::dashboard.approved_orders') }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-                         <div class="col-md-4">
+                        <div class="col-md-4">
+                            <div class="white">
+                                <div
+                                    class="br2 pa3 bg-light-red mb3"
+                                    style="box-shadow: 0 1px 1px #ccc;"
+                                >
+                                    <div class="media-body">
+                                        <div class="f3">
+                                            <span
+                                                class="fw6">{{ $user->orders()->where('moderation_status', \Botble\RealEstate\Enums\ModerationStatusEnum::PENDING)->count() }}</span>
+                                            <span class="fr"><i class="fas fa-user-clock"></i></span>
+                                        </div>
+                                        <p>{{ trans('plugins/real-estate::dashboard.pending_approve_orders') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="white">
                                 <div
                                     class="br2 pa3 bg-light-silver mb3"
@@ -134,14 +146,16 @@
                                     <div class="media-body">
                                         <div class="f3">
                                             <span
-                                                class="fw6">{{ $user->properties()->where('moderation_status', \Botble\RealEstate\Enums\ModerationStatusEnum::REJECTED)->count() }}</span>
+                                                class="fw6">{{ $user->orders()->where('moderation_status', \Botble\RealEstate\Enums\ModerationStatusEnum::REJECTED)->count() }}</span>
                                             <span class="fr"><i class="far fa-edit"></i></span>
                                         </div>
-                                        <p>{{ trans('plugins/real-estate::dashboard.rejected_properties') }}</p>
+                                        <p>{{ trans('plugins/real-estate::dashboard.rejected_orders') }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <div id="app-real-estate">
                         <activity-log-component default-active-tab="activity-logs"></activity-log-component>

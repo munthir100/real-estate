@@ -75,6 +75,15 @@
                             href="{{ route('public.account.packages') }}">{{ trans('plugins/real-estate::package.add_credit') }}</a>
                     </div>
                 </div>
+
+                @if(!auth('account')->user()->isCompletedProfile)
+                <div class="container">
+                    <div class="alert alert-warning">{{ trans('plugins/real-estate::account.complete_profile_warning') }}
+                        <a
+                            href="{{ route('public.account.settings') }}">{{ trans('plugins/real-estate::account.complete_profile') }}</a>
+                    </div>
+                </div>
+                @endif
                 <br>
             @endif
             @yield('content')

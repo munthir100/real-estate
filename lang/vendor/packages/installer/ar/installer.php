@@ -7,13 +7,13 @@ return [
      * Shared translations.
      *
      */
-    'title' => 'Installer',
-    'next' => 'Next Step',
-    'back' => 'Previous',
-    'finish' => 'Install',
-    'installation' => 'Installation',
+    'title' => 'المثبت',
+    'next' => 'الخطوة التالية',
+    'back' => 'السابق',
+    'finish' => 'تثبيت',
+    'installation' => 'التثبيت',
     'forms' => [
-        'errorTitle' => 'The following errors occurred:',
+        'errorTitle' => 'حدثت الأخطاء التالية:',
     ],
 
     /**
@@ -22,10 +22,10 @@ return [
      *
      */
     'welcome' => [
-        'templateTitle' => 'Welcome',
-        'title' => 'Welcome',
-        'message' => 'Before getting started, we need some information on the database. You will need to know the following items before proceeding.',
-        'next' => 'Let\'s go',
+        'templateTitle' => 'مرحبًا',
+        'title' => 'مرحبًا',
+        'message' => 'قبل البدء، نحتاج إلى بعض المعلومات حول قاعدة البيانات. ستحتاج إلى معرفة العناصر التالية قبل المتابعة.',
+        'next' => 'لنذهب',
     ],
 
     /**
@@ -34,9 +34,9 @@ return [
      *
      */
     'requirements' => [
-        'templateTitle' => 'Step 1 | Server Requirements',
-        'title' => 'Server Requirements',
-        'next' => 'Check Permissions',
+        'templateTitle' => 'الخطوة 1 | متطلبات الخادم',
+        'title' => 'متطلبات الخادم',
+        'next' => 'فحص الصلاحيات',
     ],
 
     /**
@@ -45,9 +45,9 @@ return [
      *
      */
     'permissions' => [
-        'templateTitle' => 'Step 2 | Permissions',
-        'title' => 'Permissions',
-        'next' => 'Configure Environment',
+        'templateTitle' => 'الخطوة 2 | الصلاحيات',
+        'title' => 'الصلاحيات',
+        'next' => 'تكوين البيئة',
     ],
 
     /**
@@ -57,32 +57,32 @@ return [
      */
     'environment' => [
         'wizard' => [
-            'templateTitle' => 'Environment Settings',
-            'title' => 'Environment Settings',
+            'templateTitle' => 'إعدادات البيئة',
+            'title' => 'إعدادات البيئة',
             'form' => [
-                'name_required' => 'An environment name is required.',
-                'app_name_label' => 'Site title',
-                'app_name_placeholder' => 'Site title',
-                'app_url_label' => 'URL',
-                'app_url_placeholder' => 'URL',
-                'db_connection_label' => 'Database Connection',
+                'name_required' => 'اسم البيئة مطلوب.',
+                'app_name_label' => 'عنوان الموقع',
+                'app_name_placeholder' => 'عنوان الموقع',
+                'app_url_label' => 'الرابط',
+                'app_url_placeholder' => 'الرابط',
+                'db_connection_label' => 'اتصال قاعدة البيانات',
                 'db_connection_label_mysql' => 'MySQL',
                 'db_connection_label_sqlite' => 'SQLite',
                 'db_connection_label_pgsql' => 'PostgreSQL',
-                'db_host_label' => 'Database host',
-                'db_host_placeholder' => 'Database host',
-                'db_port_label' => 'Database port',
-                'db_port_placeholder' => 'Database port',
-                'db_name_label' => 'Database name',
-                'db_name_placeholder' => 'Database name',
-                'db_username_label' => 'Database username',
-                'db_username_placeholder' => 'Database username',
-                'db_password_label' => 'Database password',
-                'db_password_placeholder' => 'Database password',
+                'db_host_label' => 'مضيف قاعدة البيانات',
+                'db_host_placeholder' => 'مضيف قاعدة البيانات',
+                'db_port_label' => 'منفذ قاعدة البيانات',
+                'db_port_placeholder' => 'منفذ قاعدة البيانات',
+                'db_name_label' => 'اسم قاعدة البيانات',
+                'db_name_placeholder' => 'اسم قاعدة البيانات',
+                'db_username_label' => 'اسم مستخدم قاعدة البيانات',
+                'db_username_placeholder' => 'اسم مستخدم قاعدة البيانات',
+                'db_password_label' => 'كلمة مرور قاعدة البيانات',
+                'db_password_placeholder' => 'كلمة مرور قاعدة البيانات',
                 'buttons' => [
-                    'install' => 'Install',
+                    'install' => 'تثبيت',
                 ],
-                'db_host_helper' => 'If you use Laravel Sail, just change DB_HOST to DB_HOST=mysql. On some hosting DB_HOST can be localhost instead of 127.0.0.1',
+                'db_host_helper' => 'إذا كنت تستخدم Laravel Sail، قم بتغيير DB_HOST إلى DB_HOST=mysql. في بعض خدمات الاستضافة، قد يكون DB_HOST localhost بدلاً من 127.0.0.1',
                 'db_connections' => [
                     'mysql' => 'MySQL',
                     'sqlite' => 'SQLite',
@@ -90,25 +90,25 @@ return [
                 ],
             ],
         ],
-        'success' => 'Your .env file settings have been saved.',
-        'errors' => 'Unable to save the .env file, Please create it manually.',
+        'success' => 'تم حفظ إعدادات ملف .env الخاص بك.',
+        'errors' => 'تعذر حفظ ملف .env، يرجى إنشاؤه يدويًا.',
     ],
 
-    'install' => 'Install',
+    'install' => 'تثبيت',
 
     'final' => [
-        'title' => 'Installation Finished',
-        'templateTitle' => 'Installation Finished',
-        'finished' => 'Application has been successfully installed.',
-        'exit' => 'Click here to exit',
+        'title' => 'انتهى التثبيت',
+        'templateTitle' => 'انتهى التثبيت',
+        'finished' => 'تم تثبيت التطبيق بنجاح.',
+        'exit' => 'انقر هنا للخروج',
     ],
-    'create_account' => 'Create account',
-    'first_name' => 'First name',
-    'last_name' => 'Last name',
-    'username' => 'Username',
-    'email' => 'Email',
-    'password' => 'Password',
-    'password_confirmation' => 'Password confirmation',
-    'create' => 'Create',
-    'install_success' => 'Installed successfully!',
+    'create_account' => 'إنشاء حساب',
+    'first_name' => 'الاسم الأول',
+    'last_name' => 'الاسم الأخير',
+    'username' => 'اسم المستخدم',
+    'email' => 'البريد الإلكتروني',
+    'password' => 'كلمة المرور',
+    'password_confirmation' => 'تأكيد كلمة المرور',
+    'create' => 'إنشاء',
+    'install_success' => 'تم التثبيت بنجاح!',
 ];

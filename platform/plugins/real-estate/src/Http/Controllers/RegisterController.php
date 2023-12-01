@@ -124,8 +124,6 @@ class RegisterController extends Controller
             $account->broker()->create(['is_developer' => true]);
         } elseif ($account->is_broker_account) {
             $account->broker()->create();
-        } else {
-            $account->seeker()->create();
         }
     }
 

@@ -1,22 +1,22 @@
 <?php
 
 return [
-    'name' => 'Locations',
-    'all_states' => 'All states',
-    'abbreviation' => 'Abbreviation',
-    'abbreviation_placeholder' => 'E.g: CA',
-    'exporting' => 'Exporting',
-    'total_country' => 'Total countries',
-    'total_state' => 'Total states',
-    'total_city' => 'Total cities',
-    'export_location' => 'Export location',
-    'start_export' => 'Start exporting',
+    'name' => 'المواقع',
+    'all_states' => 'كل الولايات',
+    'abbreviation' => 'الاختصار',
+    'abbreviation_placeholder' => 'على سبيل المثال: CA',
+    'exporting' => 'جاري التصدير',
+    'total_country' => 'إجمالي الدول',
+    'total_state' => 'إجمالي الولايات',
+    'total_city' => 'إجمالي المدن',
+    'export_location' => 'تصدير الموقع',
+    'start_export' => 'بدء التصدير',
 
     'enums' => [
         'import_type' => [
-            'country' => 'Country',
-            'state' => 'State',
-            'city' => 'City',
+            'country' => 'دولة',
+            'state' => 'ولاية',
+            'city' => 'مدينة',
         ],
     ],
 ];

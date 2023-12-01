@@ -6,7 +6,7 @@ return [
     'edit' => 'تحرير الفئة',
     'menu' => 'فئات العقارات',
     'none' => 'لا شيء',
-    'total_properties' => 'إجمالي الخصائص',
+    'total_properties' => 'إجمالي العروض',
     'total_projects' => 'إجمالي المشاريع',
     'is_default' => 'الافتراضي',
 ];

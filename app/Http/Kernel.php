@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\CompletedAccountMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\IsBrokerOrDeveloperMiddleware;
+use App\Http\Middleware\IsCompletedBroker;
 
 class Kernel extends HttpKernel
 {
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'completed_account' => CompletedAccountMiddleware::class,
         'is_broker_or_developer' => IsBrokerOrDeveloperMiddleware::class,
+        'is_completed_broker' => IsCompletedBroker::class,
     ];
 }

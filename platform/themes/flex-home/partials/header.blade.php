@@ -140,6 +140,9 @@
                                             <i class="fas fa-plus-circle"></i> {{ __('Add Property') }}
                                         </a>
                                     @endif
+                                    <a class="btn btn-primary add-property" href="{{ route('public.account.orders.index') }}">
+                                            <i class="fas fa-plus-circle"></i> {{ __('Request Property') }}
+                                        </a>
 
                                     <div class="d-sm-none">
                                         <div>
