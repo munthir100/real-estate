@@ -145,14 +145,9 @@ trait ParsesValidationRules
         // Now this will return the complete ruleset.
         // Nested array parameters will be present, with '*' replaced by '0'
         $newRules = Validator::make($testData, $rules)->getRules();
-       
-        return collect($newRules)->mapWithKeys(function ($val, $paramName) use ($rules) {
-            // Transform the key names back from '__asterisk__' to '*'
-            if (Str::contains($paramName, '__asterisk__')) {
-                $paramName = str_replace('__asterisk__', '*', $paramName);
-            }
 
-            // Transform the key names back from 'ids.0' to 'ids.*'
+        // Transform the key names back from 'ids.0' to 'ids.*'
+        return collect($newRules)->mapWithKeys(function ($val, $paramName) use ($rules) {
             if (Str::contains($paramName, '.0')) {
                 $genericArrayKeyName = str_replace('.0', '.*', $paramName);
 
@@ -660,14 +655,14 @@ trait ParsesValidationRules
         foreach ($parameters as $name => $details) {
             if (Str::endsWith($name, '.*')) {
                 // The user might have set the example via bodyParameters()
-                $exampleWasSpecified = $this->examplePresent($details);
+                $hasExample = $this->examplePresent($details);
 
                 // Change cars.*.dogs.things.*.* with type X to cars.*.dogs.things with type X[][]
                 while (Str::endsWith($name, '.*')) {
                     $details['type'] .= '[]';
                     $name = substr($name, 0, -2);
 
-                    if ($exampleWasSpecified) {
+                    if ($hasExample) {
                         $details['example'] = [$details['example']];
                     } else if (isset($details['setter'])) {
                         $previousSetter = $details['setter'];
