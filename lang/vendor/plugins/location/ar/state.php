@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'States',
-    'create' => 'New state',
-    'country' => 'Country',
-    'select_country' => 'Select a country...',
-    'state' => 'State',
+    'name' => 'الولايات',
+    'create' => 'ولاية جديدة',
+    'country' => 'دولة',
+    'select_country' => 'اختر دولة...',
+    'state' => 'ولاية',
 ];

@@ -33,6 +33,9 @@ return [
     'phone_placeholder' => 'الهاتف',
     'email_placeholder' => 'مثال: example@gmail.com',
     'dob' => 'تاريخ الميلاد',
-    'number_of_properties' => 'عدد الخصائص',
+    'number_of_properties' => 'عدد العروض',
     'agents' => 'وكلاء',
+
+    'complete_profile_warning' => 'الرجاء اكمال بيانات الملف الشخصي من هنا:',
+    'complete_profile' => 'اكمال البيانات',
 ];

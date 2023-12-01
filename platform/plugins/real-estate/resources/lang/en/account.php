@@ -35,4 +35,7 @@ return [
     'dob' => 'Date of birth',
     'number_of_properties' => 'Number of properties',
     'agents' => 'Agents',
+
+    'complete_profile_warning' => 'Please complete your profile heare:',
+    'complete_profile' => 'Complete profile',
 ];

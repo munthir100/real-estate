@@ -18,6 +18,7 @@ use Botble\RealEstate\Http\Controllers\Fronts\ReviewController;
 use Botble\RealEstate\Http\Controllers\DuplicateOrderController;
 use Botble\RealEstate\Http\Controllers\OrderdPropertiesController;
 use Botble\RealEstate\Http\Controllers\Fronts\CouponController as CouponControllerFront;
+use Botble\RealEstate\Http\Controllers\PublicAccountController;
 
 Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' => ['web', 'core']], function () {
     Route::group([
@@ -398,10 +399,17 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
                         'uses' => 'PublicAccountController@getPackages',
                     ]);
 
+                    Route::post('account/convert/broker', [PublicAccountController::class, 'convertToBroker'])
+                        ->name('convert.broker');
+
+                    Route::post('account/convert/developer', [PublicAccountController::class, 'convertToDeveloper'])
+                        ->name('convert.developer');
+
                     Route::get('transactions', [
                         'as' => 'transactions',
                         'uses' => 'PublicAccountController@getTransactions',
                     ]);
+
 
                     Route::prefix('coupon')->name('coupon.')->group(function () {
                         Route::post('apply', [CouponControllerFront::class, 'apply'])->name('apply');
@@ -444,7 +452,7 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
                     Route::resource('', 'AccountPropertyController')
                         ->parameters(['' => 'property']);
 
-                        
+
 
                     Route::post('renew/{id}', [
                         'as' => 'renew',

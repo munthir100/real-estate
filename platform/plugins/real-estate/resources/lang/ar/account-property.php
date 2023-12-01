@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'draft_properties' => 'الخصائص المسودة',
-    'pending_properties' => 'الخصائص المعلقة',
-    'published_properties' => 'الخصائص المنشورة',
-    'properties' => 'الخصائص',
-    'write_property' => 'كتابة خاصية',
+    'draft_properties' => 'العروض المسودة',
+    'pending_properties' => 'العروض المعلقة',
+    'published_properties' => 'العروض المنشورة',
+    'properties' => 'العروض',
+    'write_property' => 'كتابة عقار',
     'images' => 'الصور (الحد الأقصى: :max صورة)',
 ];

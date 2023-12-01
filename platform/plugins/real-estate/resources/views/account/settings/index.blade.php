@@ -34,7 +34,23 @@
                                     <div class="alert dn" id="print-msg"></div>
                                 </div>
                             </form>
+                            <div class="col-12 mb-2">
+                                <div class="row">
+                                    @if(!$user->isBrokerAccount)
+                                    <div class="col-6">
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#become-a-broker" class="btn btn-primary btn-sm">{{__('Become a Broker')}}</button>
+                                    </div>
+                                    @else(!$user->isDeveloperAccount)
+                                    <div class="col-6">
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#become-a-developer" class="btn btn-primary btn-sm">{{__('Become a Developer')}}</button>
+                                    </div>
+                                    @endif
+
+
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-lg-8 order-lg-0">
                             @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -161,6 +177,102 @@
     </div>
     @include('plugins/real-estate::account.modals.avatar')
 </div>
+
+
+
+
+@php
+if($user->IsBrokerOrDeveloperAccount){
+$val_license_number = $user->broker->val_license_number;
+$commercial_registration = $user->broker->commercial_registration;
+$license_number = $user->broker->license_number;
+}else{
+$val_license_number = null;
+$commercial_registration = null;
+$license_number = null;
+}
+@endphp
+@if(!$user->isBrokerAccount)
+<div class="modal fade" id="become-a-broker" tabindex="-1" aria-labelledby="become-a-brokerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="become-a-brokerLabel">
+                    <span>
+                        <p class="text-white text-center">
+                            {{__('Become a Broker')}}
+                        </p>
+                    </span>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{{route('public.account.convert.broker')}}">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="val_license_number">{{ trans('plugins/real-estate::dashboard.val_license_number') }}</label>
+                        <input class="form-control" id="val_license_number" name="val_license_number" type="text" value="{{ old('val_license_number') ?? $val_license_number }}" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="commercial_registration">{{ trans('plugins/real-estate::dashboard.commercial_registration') }}</label>
+                        <input class="form-control" id="commercial_registration" name="commercial_registration" type="text" value="{{ old('commercial_registration') ?? $commercial_registration }}" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="license_number">{{ trans('plugins/real-estate::dashboard.license_number') }}</label>
+                        <input class="form-control" id="license_number" name="license_number" type="text" value="{{ old('license_number') ?? $license_number }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@else(!$user->isDeveloperAccount)
+<div class="modal fade" id="become-a-developer" tabindex="-1" aria-labelledby="become-a-developerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="become-a-developerLabel">
+                    <span>
+                        <p class="text-white text-center">
+                            {{__('Become a Developer')}}
+                        </p>
+                    </span>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{{route('public.account.convert.developer')}}">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="val_license_number">{{ trans('plugins/real-estate::dashboard.val_license_number') }}</label>
+                        <input class="form-control" id="val_license_number" name="val_license_number" type="text" value="{{ old('val_license_number') ?? $val_license_number }}" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="commercial_registration">{{ trans('plugins/real-estate::dashboard.commercial_registration') }}</label>
+                        <input class="form-control" id="commercial_registration" name="commercial_registration" type="text" value="{{ old('commercial_registration') ?? $commercial_registration }}" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="license_number">{{ trans('plugins/real-estate::dashboard.license_number') }}</label>
+                        <input class="form-control" id="license_number" name="license_number" type="text" value="{{ old('license_number') ?? $license_number }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+
+
+
+
 @endsection
 @push('scripts')
 <!-- Laravel Javascript Validation -->

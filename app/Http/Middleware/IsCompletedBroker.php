@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\BrokerCompletenessChecker;
 use Closure;
 use Illuminate\Http\Request;
-use Botble\RealEstate\Models\Broker;
-use App\Services\ProfileCompletenessChecker;
 use Symfony\Component\HttpFoundation\Response;
 
-class CompletedAccountMiddleware
+class IsCompletedBroker
 {
     /**
      * Handle an incoming request.
@@ -17,12 +16,12 @@ class CompletedAccountMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $account = auth('account')->user();
+        $account = auth('account')->user(); // Assuming user is authenticated
 
-        if (!ProfileCompletenessChecker::check($account)) {
+        if (!BrokerCompletenessChecker::check($account)) {
             return redirect()->route('public.account.settings')->with(['error_msg', __('Please complete your profile first')]);
         }
-        
+
         return $next($request);
     }
 }

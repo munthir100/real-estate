@@ -15,7 +15,7 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
-use App\Services\AccountCompletenessChecker;
+use App\Services\ProfileCompletenessChecker;
 use Botble\RealEstate\Enums\ReviewStatusEnum;
 use Botble\RealEstate\Facades\RealEstateHelper;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -175,6 +175,11 @@ class Account extends BaseModel implements
         return $this->morphMany(Property::class, 'author');
     }
 
+    public function orders(): MorphMany
+    {
+        return $this->morphMany(Order::class, 'author');
+    }
+
     public function canPost(): bool
     {
         return !RealEstateHelper::isEnabledCreditsSystem() || $this->credits > 0; // important
@@ -264,5 +269,9 @@ class Account extends BaseModel implements
     function getIsBrokerOrDeveloperAccountAttribute()
     {
         return $this->getIsBrokerAccountAttribute() || $this->getIsDeveloperAccountAttribute();
+    }
+    function getIsCompletedProfileAttribute()
+    {
+        return ProfileCompletenessChecker::check($this);
     }
 }

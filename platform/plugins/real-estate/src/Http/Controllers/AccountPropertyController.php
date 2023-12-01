@@ -36,8 +36,9 @@ class AccountPropertyController extends Controller
         protected AccountActivityLogInterface $activityLogRepository
     ) {
         OptimizerHelper::disable();
-        $this->middleware('completed_account');
+        $this->middleware('completed_account')->except('index');
         $this->middleware('is_broker_or_developer');
+        $this->middleware('is_completed_broker')->except('index');
     }
 
     public function index(AccountPropertyTable $propertyTable)
@@ -61,7 +62,6 @@ class AccountPropertyController extends Controller
     public function store(
         AccountPropertyRequest $request,
         BaseHttpResponse $response,
-        AccountInterface $accountRepository,
         StorePropertyCategoryService $propertyCategoryService,
         SaveFacilitiesService $saveFacilitiesService
     ) {

@@ -2,6 +2,7 @@
 
 namespace Botble\RealEstate\Http\Controllers;
 
+use App\Http\Requests\ConvertAccountRequest;
 use Botble\Base\Facades\Assets;
 use Botble\Base\Facades\EmailHandler;
 use Botble\Base\Http\Responses\BaseHttpResponse;
@@ -29,6 +30,7 @@ use Botble\RealEstate\Http\Resources\PackageResource;
 use Botble\RealEstate\Http\Resources\TransactionResource;
 use Botble\RealEstate\Models\Account;
 use Botble\RealEstate\Models\AccountActivityLog;
+use Botble\RealEstate\Models\AccountType;
 use Botble\RealEstate\Models\Package;
 use Botble\RealEstate\Models\Transaction;
 use Botble\RealEstate\Services\CouponService;
@@ -57,8 +59,9 @@ class PublicAccountController extends Controller
             'getActivityLogs',
             'postUpload',
             'postUploadFromEditor',
+            'postAvatar'
         ]);
-        
+
         $this->middleware('is_broker_or_developer')->only([
             'getPackages',
             'getTransactions',
@@ -66,7 +69,7 @@ class PublicAccountController extends Controller
             'ajaxSubscribePackage',
         ]);
     }
-// test
+    // test
     public function getDashboard()
     {
         $user = auth('account')->user();
@@ -134,7 +137,7 @@ class PublicAccountController extends Controller
 
         $account = auth('account')->user();
         // $account->fill($request->except('email'));
-        $account->fill($request->validated());
+        $account->fill($request->input());
         $account->save();
 
         do_action('update_account_settings', $account);
@@ -538,5 +541,43 @@ class PublicAccountController extends Controller
             ->paginate();
 
         return $response->setData(TransactionResource::collection($transactions))->toApiResponse();
+    }
+
+    function convertToBroker(ConvertAccountRequest $request)
+    {
+        $account = auth('account')->user();
+
+        if ($account->isBrokerAccount) {
+            return back()->with('error_msg', 'You are already a broker.');
+        }
+
+        if (!$account->IsBrokerOrDeveloperAccount) {
+            $account->broker->create($request->validated());
+        }
+
+        $account->broker->update($request->validated(), ['is_developer' => false]);
+
+        $account->update(['account_type_id' => AccountType::BROKER]);
+
+        return back()->with('success_msg', 'Account converted to broker successfully.');
+    }
+
+
+    function convertToDeveloper(ConvertAccountRequest $request)
+    {
+        $account = auth('account')->user();
+
+        if ($account->isDeveloperAccount) {
+            return back()->with('error_msg', 'You are already a developer.');
+        }
+
+        if (!$account->isBrokerOrDeveloperAccount) {
+            $account->broker->create($request->validated(), ['is_developer' => true]);
+        }
+
+        $account->broker->update($request->validated(), ['is_developer' => true]);
+        $account->update(['account_type_id' => AccountType::DEVELOPER]);
+
+        return back()->with('success_msg', 'Account converted to developer successfully.');
     }
 }

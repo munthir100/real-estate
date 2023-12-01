@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'webhook_secret' => 'Webhook Secret',
+    'webhook_secret' => 'سر الويبهوك',
     'webhook_setup_guide' => [
-        'title' => 'Stripe Webhook Setup Guide',
-        'description' => 'Follow these steps to set up a Stripe webhook',
-        'step_1_label' => 'Login to the Stripe Dashboard',
-        'step_1_description' => 'Access the :link and click on the "Add Endpoint" button in the "Webhooks" section of the "Developers" tab.',
-        'step_2_label' => 'Select Event and Configure Endpoint',
-        'step_2_description' => 'Select the "payment_intent.succeeded" event and enter the following URL in the "Endpoint URL" field: :url',
-        'step_3_label' => 'Add Endpoint',
-        'step_3_description' => 'Click the "Add Endpoint" button to save the webhook.',
-        'step_4_label' => 'Copy Signing Secret',
-        'step_4_description' => 'Copy the "Signing Secret" value from the "Webhook Details" section and paste it into the "Stripe Webhook Secret" field in the "Stripe" section of the "Payment" tab in the "Settings" page.',
+        'title' => 'دليل إعداد ويبهوك سترايب',
+        'description' => 'اتبع هذه الخطوات لإعداد ويبهوك سترايب',
+        'step_1_label' => 'تسجيل الدخول إلى لوحة التحكم في سترايب',
+        'step_1_description' => 'قم بزيارة :link وانقر على زر "Add Endpoint" في قسم "Webhooks" ضمن علامة "Developers".',
+        'step_2_label' => 'تحديد الحدث وتكوين النقطة النهائية',
+        'step_2_description' => 'حدد حدث "payment_intent.succeeded" وأدخل الرابط التالي في حقل "Endpoint URL": :url',
+        'step_3_label' => 'إضافة النقطة النهائية',
+        'step_3_description' => 'انقر على زر "Add Endpoint" لحفظ ويبهوك.',
+        'step_4_label' => 'نسخ السر التوقيعي',
+        'step_4_description' => 'انسخ قيمة "Signing Secret" من قسم "Webhook Details" والصقها في حقل "Stripe Webhook Secret" في قسم "Stripe" ضمن علامة "Payment" في صفحة "Settings".',
     ]
 ];

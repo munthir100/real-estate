@@ -42,19 +42,18 @@ class AccountOrderController extends Controller
     ) {
         OptimizerHelper::disable();
         $this->middleware('completed_account');
-        // $this->middleware('is_broker_or_developer');
     }
 
     public function index(AccountOrderTable $orderTable)
     {
-        SeoHelper::setTitle(trans('plugins/real-estate::account-order.properties'));
+        SeoHelper::setTitle(trans('plugins/real-estate::order.name'));
 
         return $orderTable->render('plugins/real-estate::account.table.base');
     }
 
     public function create(FormBuilder $formBuilder)
     {
-        SeoHelper::setTitle(trans('plugins/real-estate::account-property.write_order'));
+        SeoHelper::setTitle(trans('plugins/real-estate::order.create'));
 
         return $formBuilder->create(AccountOrderForm::class)->renderForm();
     }
@@ -84,13 +83,13 @@ class AccountOrderController extends Controller
 
         AccountActivityLog::query()->create([
             'action' => 'request_property',
-            'reference_name' => $order->name,
+            'reference_name' => $order->phone,
             'reference_url' => route('public.account.orders.edit', $order->id),
         ]);
 
         EmailHandler::setModule(REAL_ESTATE_MODULE_SCREEN_NAME)
             ->setVariableValues([
-                'post_name' => $order->name,
+                'post_name' => $order->phone,
                 'post_url' => route('order.edit', $order->id),
                 'post_author' => $order->author->name,
             ])
@@ -114,7 +113,7 @@ class AccountOrderController extends Controller
 
         event(new BeforeEditContentEvent($request, $order));
 
-        SeoHelper::setTitle(trans('plugins/real-estate::property.edit') . ' "' . $order->name . '"');
+        SeoHelper::setTitle(trans('plugins/real-estate::property.edit') . ' "' . $order->phone . '"');
 
         return $formBuilder
             ->create(AccountOrderForm::class, ['model' => $order])
@@ -126,7 +125,6 @@ class AccountOrderController extends Controller
         AccountOrderRequest $request,
         BaseHttpResponse $response,
         StoreOrderCategoryService $orderCategoryService,
-        SaveFacilitiesService $saveFacilitiesService
     ) {
         $order = Order::query()->where('author_id', auth('account')->id())
             ->with('author')
@@ -146,7 +144,7 @@ class AccountOrderController extends Controller
 
         AccountActivityLog::query()->create([
             'action' => 'update_requested_property',
-            'reference_name' => $order->name,
+            'reference_name' => $order->phone,
             'reference_url' => route('public.account.orders.edit', $order->id),
         ]);
 
@@ -184,7 +182,7 @@ class AccountOrderController extends Controller
 
         AccountActivityLog::query()->create([
             'action' => 'delete_order',
-            'reference_name' => $order->name,
+            'reference_name' => $order->phone,
         ]);
 
         return $response->setMessage(__('Delete order successfully!'));

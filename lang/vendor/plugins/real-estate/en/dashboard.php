@@ -77,6 +77,11 @@ return [
         'create_property' => 'You have created property ":name"',
         'update_property' => 'You have updated property ":name"',
         'delete_property' => 'You have deleted property ":name"',
+        
+        'request_property' => 'You have created order ":name"',
+        'update_requested_property' => 'You have updated order ":name"',
+        'delete_order' => 'You have deleted order ":name"',
+
         'update_setting' => 'You have updated your settings',
         'update_security' => 'You have updated your security settings',
         'your_property_updated_by_admin' => 'Your property ":name" is updated by administrator',
@@ -89,6 +94,9 @@ return [
     'approved_properties' => 'Approved properties',
     'pending_approve_properties' => 'Pending approve properties',
     'rejected_properties' => 'Rejected properties',
+    'approved_orders' => 'Approved orders',
+    'pending_approve_orders' => 'Pending approve orders',
+    'rejected_orders' => 'Rejected orders',
     'your_credits' => 'Your Credits',
     'credits' => 'credits',
     'per_post' => 'per post',
