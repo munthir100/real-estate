@@ -40,7 +40,8 @@
                                     <div class="col-6">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#become-a-broker" class="btn btn-primary btn-sm">{{__('Become a Broker')}}</button>
                                     </div>
-                                    @else(!$user->isDeveloperAccount)
+                                    @endif
+                                    @if(!$user->isDeveloperAccount)
                                     <div class="col-6">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#become-a-developer" class="btn btn-primary btn-sm">{{__('Become a Developer')}}</button>
                                     </div>
@@ -230,7 +231,8 @@ $license_number = null;
         </div>
     </div>
 </div>
-@else(!$user->isDeveloperAccount)
+@endif
+@if(!$user->isDeveloperAccount)
 <div class="modal fade" id="become-a-developer" tabindex="-1" aria-labelledby="become-a-developerLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
