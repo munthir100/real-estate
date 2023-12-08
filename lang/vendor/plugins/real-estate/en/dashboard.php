@@ -114,6 +114,7 @@ return [
     'state' => 'State',
     'city' => 'City',
     'sidebar_invoices' => 'Invoices',
+    'sidebar_nafath' => 'Authentication via Nafath',
     'number_posts_free' => 'Free :posts post(s)',
     'total_package_price' => ':total Total (Save :percent%)'
 ];

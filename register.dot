@@ -1,0 +1,42 @@
+digraph registration_flowchart {
+  // Nodes
+  node [shape=rectangle, width=1.2, style=rounded];
+  start [label="Start"];
+  enter_information [label="Enter Full Name, Email/Phone, Password, Account Type"];
+  validate_email [label="Validate Email Format"];
+  validate_phone [label="Validate Phone Format"];
+  generate_store_otp [label="Generate and Store OTP in Session"];
+  send_otp_email [label="Send OTP via Email"];
+  send_otp_sms [label="Send OTP via SMS"];
+  store_otp_email [label="Store OTP and Email Or Phone in Session"];
+  redirect_to_verify_otp [label="Redirect to OTP Verification Page"];
+  verify_otp_session [label="Verify OTP in Session"];
+  check_session [label="Check Session for Email or Phone and OTP"];
+  redirect_to_login [label="Redirect to Login Page"]; // Added this node
+  verify_otp [label="Verify OTP from User"];
+  save_user_ip [label="Save User IP to Database"]; // Added this node
+  remove_session [label="Remove Session Email and OTP"]; // Added this node
+  redirect_to_dashboard [label="Redirect to Dashboard"];
+  end [label="End"];
+
+  // Edges
+  start -> enter_information;
+  enter_information -> validate_email [label="User enters Email"];
+  enter_information -> validate_phone [label="User enters Phone"];
+  validate_email -> generate_store_otp [label="Email is Valid"];
+  validate_phone -> generate_store_otp [label="Phone is Valid"];
+  generate_store_otp -> send_otp_email [label="OTP Generated and Stored"];
+  generate_store_otp -> send_otp_sms [label="OTP Generated and Stored"];
+  send_otp_email -> store_otp_email [label="Email Sent"];
+  send_otp_sms -> store_otp_email [label="SMS Sent"];
+  store_otp_email -> redirect_to_verify_otp [label="OTP and Email Stored"];
+  redirect_to_verify_otp -> verify_otp_session [label="Redirected to OTP Verification Page"];
+  verify_otp_session -> check_session [label="Verify OTP in Session"];
+  check_session -> redirect_to_login [label="Session Not Found"]; // Updated this edge
+  check_session -> verify_otp [label="Session Found"]; // Updated this edge
+  verify_otp -> save_user_ip [label="OTP Verified"];
+  save_user_ip -> remove_session [label="User IP Saved"];
+  remove_session -> redirect_to_dashboard [label="Session Removed"];
+  redirect_to_login -> end [label="Redirected to Login Page"];
+  redirect_to_dashboard -> end [label="Redirected to Dashboard"];
+}

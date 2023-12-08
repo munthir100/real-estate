@@ -2,14 +2,19 @@
 
 namespace Botble\RealEstate\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Botble\ACL\Traits\AuthenticatesUsers;
-use Botble\ACL\Traits\LogoutGuardTrait;
-use Botble\RealEstate\Facades\RealEstateHelper;
-use Botble\SeoHelper\Facades\SeoHelper;
-use Botble\Theme\Facades\Theme;
 use Illuminate\Http\Request;
+use Botble\Theme\Facades\Theme;
+use App\Http\Controllers\Controller;
+use App\Models\AccountIp;
+use App\Services\OtpService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Botble\RealEstate\Models\Account;
+use Botble\ACL\Traits\LogoutGuardTrait;
+use Botble\SeoHelper\Facades\SeoHelper;
+use Botble\ACL\Traits\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
+use Botble\RealEstate\Facades\RealEstateHelper;
 
 class LoginController extends Controller
 {
@@ -26,7 +31,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if (! RealEstateHelper::isLoginEnabled()) {
+        if (!RealEstateHelper::isLoginEnabled()) {
             abort(404);
         }
 
@@ -44,69 +49,49 @@ class LoginController extends Controller
         return auth('account');
     }
 
-    public function login(Request $request)
+    public function login(Request $request, OtpService $otpService)
     {
-        if (! RealEstateHelper::isLoginEnabled()) {
+        if (!RealEstateHelper::isLoginEnabled()) {
             abort(404);
         }
 
-        $request->merge([$this->username() => $request->input('email')]);
+        $request->validate([
+            'email' => 'required|string'
+        ]);
+        $email = $request->input('email');
+        $account = Account::where('email', $email)
+            ->orWhere('phone', $email)->first();
 
-        $this->validateLogin($request);
+        if ($account && Hash::check(request()->input('password'), $account->password)) {
+            $savedIp = $this->checkIfSavedIp($account, $request->ip());
+            if ($savedIp) {
+                Auth::guard('account')->loginUsingId($account->id);
 
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
+                return to_route('public.account.dashboard');
+            } else {
+                $otp = $otpService->generateOtp();
+                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $otpService->sendOtpToEmail($account, $otp);
+                } else {
+                    $otpService->sendOtpToPhone($account, $otp);
+                }
 
-            $this->sendLockoutResponse($request);
+                return to_route('public.account.otp.form');
+            }
         }
-
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse();
     }
 
-    protected function attemptLogin(Request $request)
+    protected function checkIfSavedIp($account, $ip)
     {
-        if ($this->guard()->validate($this->credentials($request))) {
-            $account = $this->guard()->getLastAttempted();
-
-            if (setting(
-                'verify_account_email',
-                false
-            ) && empty($account->confirmed_at)) {
-                throw ValidationException::withMessages([
-                    'confirmation' => [
-                        __('The given email address has not been confirmed. <a href=":resend_link">Resend confirmation link.</a>', [
-                            'resend_link' => route('public.account.resend_confirmation', ['email' => $account->email]),
-                        ]),
-                    ],
-                ]);
-            }
-
-            return $this->baseAttemptLogin($request);
-        }
-
-        return false;
+        return AccountIp::where('account_id', $account->id)->where('ip', $ip)->first();
     }
 
-    public function username()
-    {
-        return filter_var(request()->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-    }
 
     public function logout(Request $request)
     {
-        if (! RealEstateHelper::isLoginEnabled()) {
+        if (!RealEstateHelper::isLoginEnabled()) {
             abort(404);
         }
 
@@ -122,7 +107,7 @@ class LoginController extends Controller
             }
         }
 
-        if (! $activeGuards) {
+        if (!$activeGuards) {
             $request->session()->flush();
             $request->session()->regenerate();
         }

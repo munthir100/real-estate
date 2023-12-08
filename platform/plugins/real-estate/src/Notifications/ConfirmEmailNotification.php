@@ -13,7 +13,17 @@ use Illuminate\Support\HtmlString;
 class ConfirmEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+    protected $otp;
 
+    /**
+     * Create a new notification instance.
+     *
+     * @param string $otp
+     */
+    public function __construct($otp)
+    {
+        $this->otp = $otp;
+    }
     /**
      * Get the notification's delivery channels.
      *
@@ -34,7 +44,7 @@ class ConfirmEmailNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         EmailHandler::setModule(REAL_ESTATE_MODULE_SCREEN_NAME)
-            ->setVariableValue('verify_link', URL::signedRoute('public.account.confirm', ['user' => $notifiable->id]));
+            ->setVariableValue('verify_link', $this->otp);
 
         $template = 'confirm-email';
         $content = EmailHandler::prepareData(EmailHandler::getTemplateContent($template));
