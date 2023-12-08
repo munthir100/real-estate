@@ -41,7 +41,6 @@ class AccountOrderController extends Controller
         protected AccountActivityLogInterface $activityLogRepository
     ) {
         OptimizerHelper::disable();
-        $this->middleware('completed_account');
     }
 
     public function index(AccountOrderTable $orderTable)

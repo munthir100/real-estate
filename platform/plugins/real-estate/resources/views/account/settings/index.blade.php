@@ -40,13 +40,12 @@
                                     <div class="col-6">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#become-a-broker" class="btn btn-primary btn-sm">{{__('Become a Broker')}}</button>
                                     </div>
-                                    @else(!$user->isDeveloperAccount)
+                                    @endif
+                                    @if(!$user->isDeveloperAccount)
                                     <div class="col-6">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#become-a-developer" class="btn btn-primary btn-sm">{{__('Become a Developer')}}</button>
                                     </div>
                                     @endif
-
-
                                 </div>
                             </div>
                         </div>
@@ -197,14 +196,10 @@ $license_number = null;
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="become-a-brokerLabel">
-                    <span>
-                        <p class="text-white text-center">
-                            {{__('Become a Broker')}}
-                        </p>
-                    </span>
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title" id="avatar-modal-label"><i class="til_img"></i>
+                    <strong> {{__('Become a Broker')}}</strong>
+                </h4>
+                <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <form method="post" action="{{route('public.account.convert.broker')}}">
                 @csrf
@@ -230,19 +225,16 @@ $license_number = null;
         </div>
     </div>
 </div>
-@else(!$user->isDeveloperAccount)
+@endif
+@if(!$user->isDeveloperAccount)
 <div class="modal fade" id="become-a-developer" tabindex="-1" aria-labelledby="become-a-developerLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="become-a-developerLabel">
-                    <span>
-                        <p class="text-white text-center">
-                            {{__('Become a Developer')}}
-                        </p>
-                    </span>
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title" id="avatar-modal-label"><i class="til_img"></i>
+                    <strong> {{__('Become a Developer')}} </strong>
+                </h4>
+                <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <form method="post" action="{{route('public.account.convert.developer')}}">
                 @csrf

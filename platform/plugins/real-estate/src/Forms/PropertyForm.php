@@ -353,12 +353,12 @@ class PropertyForm extends FormAbstract
                     ['' => trans('plugins/real-estate::property.select_account')],
             ])
             ->add('property_license_number', 'text', [
-                'label' => 'Property License Number',
+                'label' => __('Property License Number'),
                 'attributes' => ['required' => 'required'],
                 'required' => true,
             ])
             ->add('property_license_date', 'date', [
-                'label' => 'Property License Date',
+                'label' => __('Property License Date'),
                 'value' => optional($this->getModel()->property_license_date)->format('Y-m-d'),
                 'attributes' => [
                     'required' => 'required',
@@ -366,20 +366,20 @@ class PropertyForm extends FormAbstract
                 'required' => true,
             ])
             ->add('building_number', 'text', [
-                'label' => 'Building Number',
+                'label' => __('Building Number'),
                 'attributes' => ['required' => 'required'],
                 'required' => true,
             ])
             ->add('additional_number', 'text', [
-                'label' => 'Additional Number',
+                'label' => __('Additional Number'),
                 'attributes' => ['required' => 'required'],
                 'required' => true,
             ])
             ->add('has_restriction', 'checkbox', [
-                'label' => 'Property Has Restriction',
+                'label' => __('Property Has Restriction'),
             ])
             ->add('has_mortgage', 'checkbox', [
-                'label' => 'Property Has Mortgage',
+                'label' => __('Property Has Mortgage'),
             ])
             ->setActionButtons(view('plugins/real-estate::forms.form-property-actions', ['property' => $this->model])->render());
 

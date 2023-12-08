@@ -2,16 +2,16 @@
 
 <strong>Hello!</strong> <br /><br />
 
-Please verify your email address in order to access this website. Click on the button below to verify your email.. <br /><br />
+Please use the following OTP to verify your email address and access this website: <br /><br />
 
-<a href="{{ verify_link }}">Verify now</a> <br /><br />
+<strong>OTP: {{ verify_link }}</strong> <br /><br />
+
+If you did not request this verification, please ignore this email. <br /><br />
 
 Regards, <br />
 
 <strong>{{ site_title }}</strong>
 
 <hr />
-
-If you’re having trouble clicking the "Verify now" button, copy and paste the URL below into your web browser: {{ verify_link }}
 
 {{ footer }}

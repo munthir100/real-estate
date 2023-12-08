@@ -2,6 +2,7 @@
 
 namespace Botble\RealEstate\Models;
 
+use App\Models\AccountIp;
 use Exception;
 use Illuminate\Support\Str;
 use Botble\Base\Supports\Avatar;
@@ -113,11 +114,6 @@ class Account extends BaseModel implements
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
-    }
-
-    public function sendEmailVerificationNotification(): void
-    {
-        $this->notify(new ConfirmEmailNotification());
     }
 
     public function avatar(): BelongsTo
@@ -245,9 +241,9 @@ class Account extends BaseModel implements
         return $this->hasOne(Broker::class);
     }
 
-    function seeker()
+    function ipAddress()
     {
-        return $this->hasOne(Seeker::class);
+        return $this->hasMany(AccountIp::class);
     }
 
     function getIsBrokerAccountAttribute()

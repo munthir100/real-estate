@@ -4,6 +4,7 @@ namespace Botble\RealEstate\Http\Requests;
 
 use App\Rules\SaudiArabianPhoneNumber;
 use Botble\Support\Http\Requests\Request;
+use Illuminate\Validation\ValidationException;
 
 class RegisterRequest extends Request
 {
@@ -26,5 +27,17 @@ class RegisterRequest extends Request
             'password' => 'required|string|min:6|confirmed',
             'account_type_id' => 'required|integer|exists:re_account_types,id',
         ];
+    }
+
+    public function validateEmailAndPhone()
+    {
+        $email = $this->input('email');
+        $phone = $this->input('phone');
+
+        if (!empty($email) && !empty($phone)) {
+            throw ValidationException::withMessages([
+                'email' => 'You must enter either an email or a phone, not both.',
+            ]);
+        }
     }
 }

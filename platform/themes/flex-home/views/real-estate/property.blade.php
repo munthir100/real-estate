@@ -211,41 +211,40 @@ Theme::asset()
                 @if ($property->video_url)
                 {!! Theme::partial('real-estate.elements.video', ['object' => $property, 'title' => __('Property video')]) !!}
                 @endif
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-sm-12">
-                        <h5 class="headifhouse">{{ __('Legal info') }}</h5>
 
                         <div class="ck-content">
-                            <strong>additional number :</strong> {{$property->property_license_number}}
+                            <strong>{{__('Property License Number')}} :</strong> {{$property->property_license_number}}
                         </div>
 
                         <div class="ck-content">
-                            <strong>license date :</strong> {{$property->property_license_date}}
+                            <strong>{{__('Property License Date')}} :</strong> {{$property->property_license_date}}
                         </div>
 
                         <div class="ck-content">
-                            <strong>building number :</strong> {{$property->building_number}}
+                            <strong>{{__('Building Number')}} :</strong> {{$property->building_number}}
                         </div>
 
                         <div class="ck-content">
-                            <strong>additional number :</strong> {{$property->additional_number}}
+                            <strong>{{__('Additional Number')}} :</strong> {{$property->additional_number}}
                         </div>
 
                         <div class="ck-content">
-                            <strong>property has mortgage :</strong>
+                            <strong>{{__('Property Mortgage')}} :</strong>
                             @if($property->has_mortgage)
-                            Yes
+                            {{__('Yes')}}
                             @else
-                            No
+                            {{__('No Mortgage')}}
                             @endif
                         </div>
 
                         <div class="ck-content">
-                            <strong>property has restrictions :</strong>
+                            <strong>{{__('Property Restrictions')}} :</strong>
                             @if($property->has_restriction)
-                            Yes
+                            {{__('Yes')}}
                             @else
-                            No
+                            {{__('No Restrictions')}}
                             @endif
                         </div>
 

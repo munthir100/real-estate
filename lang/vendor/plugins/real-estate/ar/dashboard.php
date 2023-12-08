@@ -114,6 +114,7 @@ return [
     'state' => 'الولاية',
     'city' => 'المدينة',
     'sidebar_invoices' => 'الفواتير',
+    'sidebar_nafath' => 'التوثيق عن طريق نفاذ',
     'number_posts_free' => 'مجاني :المنشورات منشور(ات)',
     'total_package_price' => ':total الإجمالي (وفّر :percent%)',
     'val_license_number' => 'رقم ترخيص Val',

@@ -15,6 +15,7 @@ use Botble\Base\Facades\EmailHandler;
 use Botble\RealEstate\Models\Account;
 use Illuminate\Auth\Events\Registered;
 use Botble\SeoHelper\Facades\SeoHelper;
+use App\Services\OtpService;
 use Botble\RealEstate\Models\AccountType;
 use Illuminate\Support\Facades\Validator;
 use Botble\RealEstate\Facades\RealEstateHelper;
@@ -70,11 +71,6 @@ class RegisterController extends Controller
             ->setMessage(__('You successfully confirmed your email address.'));
     }
 
-    protected function guard()
-    {
-        return auth('account');
-    }
-
     public function resendConfirmation(Request $request, BaseHttpResponse $response)
     {
         if (!RealEstateHelper::isRegisterEnabled()) {
@@ -89,33 +85,33 @@ class RegisterController extends Controller
                 ->setMessage(__('Cannot find this account!'));
         }
 
-        $this->sendConfirmationToUser($account);
+        $this->sendConfirmationToUser($account, 1234); // temp
 
         return $response
             ->setMessage(__('We sent you another confirmation email. You should receive it shortly.'));
     }
 
-    protected function sendConfirmationToUser(Account $account)
-    {
-        $account->notify(app(ConfirmEmailNotification::class));
-    }
 
-    public function register(RegisterRequest $request, BaseHttpResponse $response)
+
+    public function register(RegisterRequest $request, BaseHttpResponse $response, OtpService $otpService)
     {
         if (!RealEstateHelper::isRegisterEnabled()) {
             abort(404);
         }
         $data = $request->validated();
-        $data['password'] = bcrypt($data['password']);
+        $request->validateEmailAndPhone($data);
+        $data['password'] = Hash::make($data['password']);
         $account = Account::create($data);
         $this->createAccountType($account);
         event(new Registered($account));
-        $account->verified_at = now(); // temp
-        $this->guard()->login($account);
-
-
-        return to_route('public.account.settings')
-            ->with('success', __('Registered successfully!'));
+        $otp = $otpService->generateOtp();
+        if ($data['email']) {
+            $otpService->sendOtpToEmail($account, $otp);
+        }else{
+            $otpService->sendOtpToPhone($account, $otp);
+        }
+        
+        return to_route('public.account.otp.form');
     }
 
     function createAccountType($account)

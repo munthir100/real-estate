@@ -59,7 +59,9 @@ class PublicAccountController extends Controller
             'getActivityLogs',
             'postUpload',
             'postUploadFromEditor',
-            'postAvatar'
+            'postAvatar',
+            'convertToBroker',
+            'convertToDeveloper',
         ]);
 
         $this->middleware('is_broker_or_developer')->only([
@@ -552,14 +554,14 @@ class PublicAccountController extends Controller
         }
 
         if (!$account->IsBrokerOrDeveloperAccount) {
-            $account->broker->create($request->validated());
+            $account->broker()->create($request->validated());
         }
 
-        $account->broker->update($request->validated(), ['is_developer' => false]);
+        $account->broker()->update($request->validated(), ['is_developer' => false]);
 
         $account->update(['account_type_id' => AccountType::BROKER]);
 
-        return back()->with('success_msg', 'Account converted to broker successfully.');
+        return back()->with('success_msg', __('Account converted to broker'));
     }
 
 
@@ -578,6 +580,6 @@ class PublicAccountController extends Controller
         $account->broker->update($request->validated(), ['is_developer' => true]);
         $account->update(['account_type_id' => AccountType::DEVELOPER]);
 
-        return back()->with('success_msg', 'Account converted to developer successfully.');
+        return back()->with('success_msg', __('Account converted to developer'));
     }
 }

@@ -12,13 +12,14 @@ use Botble\RealEstate\Models\Property;
 use Botble\RealEstate\Facades\RealEstateHelper;
 use Botble\RealEstate\Http\Controllers\CouponController;
 use Botble\RealEstate\Http\Controllers\InvoiceController;
+use Botble\RealEstate\Http\Controllers\AccountOtpController;
 use Botble\RealEstate\Http\Controllers\CustomFieldController;
 use Botble\RealEstate\Http\Controllers\AccountOrderController;
 use Botble\RealEstate\Http\Controllers\Fronts\ReviewController;
+use Botble\RealEstate\Http\Controllers\PublicAccountController;
 use Botble\RealEstate\Http\Controllers\DuplicateOrderController;
 use Botble\RealEstate\Http\Controllers\OrderdPropertiesController;
 use Botble\RealEstate\Http\Controllers\Fronts\CouponController as CouponControllerFront;
-use Botble\RealEstate\Http\Controllers\PublicAccountController;
 
 Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' => ['web', 'core']], function () {
     Route::group([
@@ -308,6 +309,9 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
                         ->name('register');
                     Route::post('register', 'RegisterController@register')
                         ->name('register.post');
+
+                    Route::get('otp/verify', [AccountOtpController::class,'showOtpVerificationForm'])->name('otp.form');
+                    Route::post('otp/verify', [AccountOtpController::class,'verifyOtp'])->name('otp.verify');
 
                     Route::get('verify', 'RegisterController@getVerify')
                         ->name('verify');
