@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4105dc0e550307db7cf5c2e496dcbdca",
+    "content-hash": "ccf772121ae8222ebe2f825c8744b257",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -354,7 +354,7 @@
         },
         {
             "name": "botble/get-started",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/get-started",
@@ -380,7 +380,7 @@
         },
         {
             "name": "botble/installer",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/installer",
@@ -409,7 +409,7 @@
         },
         {
             "name": "botble/menu",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/menu",
@@ -442,7 +442,7 @@
         },
         {
             "name": "botble/optimize",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/optimize",
@@ -474,7 +474,7 @@
         },
         {
             "name": "botble/page",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/page",
@@ -504,7 +504,7 @@
         },
         {
             "name": "botble/platform",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/core",
@@ -605,7 +605,7 @@
         },
         {
             "name": "botble/plugin-management",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/plugin-management",
@@ -634,7 +634,7 @@
         },
         {
             "name": "botble/revision",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/revision",
@@ -663,7 +663,7 @@
         },
         {
             "name": "botble/seo-helper",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/seo-helper",
@@ -696,7 +696,7 @@
         },
         {
             "name": "botble/shortcode",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/shortcode",
@@ -728,7 +728,7 @@
         },
         {
             "name": "botble/sitemap",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/sitemap",
@@ -757,7 +757,7 @@
         },
         {
             "name": "botble/slug",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/slug",
@@ -789,7 +789,7 @@
         },
         {
             "name": "botble/theme",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/theme",
@@ -830,7 +830,7 @@
         },
         {
             "name": "botble/widget",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/widget",
@@ -10105,6 +10105,55 @@
             "time": "2023-08-28T11:09:02+00:00"
         },
         {
+            "name": "twilio/sdk",
+            "version": "7.13.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:twilio/twilio-php.git",
+                "reference": "cda27b65615ecfddce24668803078bc72b46fe17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/cda27b65615ecfddce24668803078bc72b46fe17",
+                "reference": "cda27b65615ecfddce24668803078bc72b46fe17",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "phpunit/phpunit": ">=7.0 < 10"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "https://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2023-12-14T10:47:43+00:00"
+        },
+        {
             "name": "unicodeveloper/laravel-paystack",
             "version": "1.1.0",
             "source": {
@@ -14090,5 +14139,5 @@
         "ext-zip": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.2.0"
 }

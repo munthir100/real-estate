@@ -109,6 +109,14 @@ class Account extends BaseModel implements
 
             $account->reviews()->delete();
         });
+
+        static::deleting(function (Account $account) {
+            $broker = $account->broker;
+
+            if ($broker->commercial_registration_file) {
+                Storage::delete('public/commercial_registrations_files/' . $broker->commercial_registration_file);
+            }
+        });
     }
 
     public function sendPasswordResetNotification($token): void

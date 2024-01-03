@@ -428,5 +428,6 @@
     "Property Mortgage": "العقار مرهون",
     "Property Has Mortgage": "يوجد رهن على العقار",
     "No Mortgage": "لا يوجد رهن",
-    "No Restrictions": "لا توجد التزامات"
+    "No Restrictions": "لا توجد التزامات",
+    "commertial_registration_file" : "ملف السجل التجاري"
 }

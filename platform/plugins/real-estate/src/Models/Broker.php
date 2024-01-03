@@ -3,8 +3,9 @@
 namespace Botble\RealEstate\Models;
 
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Broker extends Model
 {
@@ -17,8 +18,9 @@ class Broker extends Model
         'commercial_registration',
         'license_number',
         'account_id',
+        'commercial_registration_file',
     ];
-
+    
     public function account()
     {
         return $this->belongsTo(Account::class);
