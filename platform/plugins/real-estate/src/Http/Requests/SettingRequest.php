@@ -30,11 +30,12 @@ class SettingRequest extends Request
             ],
             'dob' => 'max:20|sometimes',
         ];
-        if (auth('account')->user()->requires_legal_information) {
+        if (auth('account')->user()->IsBrokerOrDeveloperAccount) {
             $legalRules = [
                 'val_license_number' => 'required',
                 'commercial_registration' => 'required',
                 'license_number' => 'required',
+                'commercial_registration_file' => 'required|file|mimes:pdf',
             ];
 
             $rules = array_merge($rules, $legalRules);

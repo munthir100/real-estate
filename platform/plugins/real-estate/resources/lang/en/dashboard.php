@@ -110,5 +110,6 @@ return [
     'total_package_price' => ':total Total (Save :percent%)',
     'val_license_number' => 'Val license number',
     'commercial_registration' => 'Commercial registration',
+    'commercial_registration_file' => 'Commercial registration file',
     'license_number' => 'License number'
 ];

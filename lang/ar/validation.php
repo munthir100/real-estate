@@ -164,6 +164,7 @@ return [
         'user_type_id' => 'معرف نوع المستخدم',
         'user_type' => 'نوع المستخدم',
         'commertial_number' => 'الرقم التجاري',
+        'commercial_registration_file' => 'ملف السجل التجاري',
         'office_name' => 'اسم المكتب',
         'tax_number' => 'الرقم الضريبي',
         'company_name' => 'اسم الشركة',

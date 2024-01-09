@@ -111,5 +111,6 @@ return [
     'total_package_price' => ':total الإجمالي (وفّر :percent%)',
     'val_license_number' => 'رقم ترخيص Val',
     'commercial_registration' => 'التسجيل التجاري',
+    'commercial_registration_file' => 'ملف السجل التجاري',
     'license_number' => 'رقم الترخيص',
 ];

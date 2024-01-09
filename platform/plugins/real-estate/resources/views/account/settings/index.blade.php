@@ -58,7 +58,7 @@
                                 </button>
                             </div>
                             @endif
-                            <form id="setting-form" action="{{ route('public.account.post.settings') }}" method="POST">
+                            <form id="setting-form" action="{{ route('public.account.post.settings') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <!-- Name -->
                                 <div class="form-group mb-3">
@@ -163,6 +163,21 @@
                                     <label for="license_number">{{ trans('plugins/real-estate::dashboard.license_number') }}</label>
                                     <input class="form-control" id="license_number" name="license_number" type="text" value="{{ old('license_number') ?? $user->broker->license_number }}" required>
                                 </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="commercial_registration_file">
+                                        {{ trans('plugins/real-estate::dashboard.commercial_registration_file') }} (PDF)
+                                    </label>
+
+                                    @if ($user->broker->commercial_registration_file)
+                                    <a href="{{ asset('storage/' . $user->broker->commercial_registration_file) }}" target="_blank">{{__('View')}}</a>
+                                    @endif
+
+                                    <input accept=".pdf" class="form-control" id="commercial_registration_file" name="commercial_registration_file" type="file" value="{{ old('commercial_registration_file') ?? $user->broker->commercial_registration_file }}" {{ $user->broker->commercial_registration_file ? '' : 'required' }}>
+                                </div>
+
+
+
                                 @endif
                                 @endif
                                 {!! apply_filters('account_settings_page', null, $user) !!}

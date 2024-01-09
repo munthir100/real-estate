@@ -141,6 +141,9 @@ class PublicAccountController extends Controller
         // $account->fill($request->except('email'));
         $account->fill($request->input());
         $account->save();
+        
+        $file = $request->file('commercial_registration_file');
+        $filePath = $file->storeAs('commercial_registration_files', 'commercial_registration_' . time() . '.' . $file->getClientOriginalExtension(), 'public');
 
         do_action('update_account_settings', $account);
         if ($account->RequiresLegalInformation) {
@@ -148,6 +151,7 @@ class PublicAccountController extends Controller
                 'val_license_number' => $request->val_license_number,
                 'commercial_registration' => $request->commercial_registration,
                 'license_number' => $request->license_number,
+                'commercial_registration_file' => $filePath,
             ]);
         }
         AccountActivityLog::query()->create(['action' => 'update_setting']);

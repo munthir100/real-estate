@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4105dc0e550307db7cf5c2e496dcbdca",
+    "content-hash": "26c75a82af991ed8dfbe54089667ffa8",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -354,7 +354,7 @@
         },
         {
             "name": "botble/get-started",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/get-started",
@@ -380,7 +380,7 @@
         },
         {
             "name": "botble/installer",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/installer",
@@ -409,7 +409,7 @@
         },
         {
             "name": "botble/menu",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/menu",
@@ -442,7 +442,7 @@
         },
         {
             "name": "botble/optimize",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/optimize",
@@ -474,7 +474,7 @@
         },
         {
             "name": "botble/page",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/page",
@@ -504,7 +504,7 @@
         },
         {
             "name": "botble/platform",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/core",
@@ -605,7 +605,7 @@
         },
         {
             "name": "botble/plugin-management",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/plugin-management",
@@ -634,7 +634,7 @@
         },
         {
             "name": "botble/revision",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/revision",
@@ -663,7 +663,7 @@
         },
         {
             "name": "botble/seo-helper",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/seo-helper",
@@ -696,7 +696,7 @@
         },
         {
             "name": "botble/shortcode",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/shortcode",
@@ -728,7 +728,7 @@
         },
         {
             "name": "botble/sitemap",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/sitemap",
@@ -757,7 +757,7 @@
         },
         {
             "name": "botble/slug",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/slug",
@@ -789,7 +789,7 @@
         },
         {
             "name": "botble/theme",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/theme",
@@ -830,7 +830,7 @@
         },
         {
             "name": "botble/widget",
-            "version": "dev-develop",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/widget",
@@ -10105,6 +10105,55 @@
             "time": "2023-08-28T11:09:02+00:00"
         },
         {
+            "name": "twilio/sdk",
+            "version": "7.13.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:twilio/twilio-php.git",
+                "reference": "cda27b65615ecfddce24668803078bc72b46fe17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/cda27b65615ecfddce24668803078bc72b46fe17",
+                "reference": "cda27b65615ecfddce24668803078bc72b46fe17",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "phpunit/phpunit": ">=7.0 < 10"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "https://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2023-12-14T10:47:43+00:00"
+        },
+        {
             "name": "unicodeveloper/laravel-paystack",
             "version": "1.1.0",
             "source": {
@@ -13766,16 +13815,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.11.3",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "3d886de644ff7a5b42e4d27c1e1f67c8b5f00044"
+                "reference": "5b6f801c605a593106b623e45ca41496a6e7d56d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/3d886de644ff7a5b42e4d27c1e1f67c8b5f00044",
-                "reference": "3d886de644ff7a5b42e4d27c1e1f67c8b5f00044",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/5b6f801c605a593106b623e45ca41496a6e7d56d",
+                "reference": "5b6f801c605a593106b623e45ca41496a6e7d56d",
                 "shasum": ""
             },
             "require": {
@@ -13845,39 +13894,39 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-18T14:09:40+00:00"
+            "time": "2024-01-03T15:49:39+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "2.3.1",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "bf21cd15aa47fa4ec5d73bbc932005c70261efc8"
+                "reference": "b9395ba48d3f30d42092cf6ceff75ed7256cd604"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/bf21cd15aa47fa4ec5d73bbc932005c70261efc8",
-                "reference": "bf21cd15aa47fa4ec5d73bbc932005c70261efc8",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/b9395ba48d3f30d42092cf6ceff75ed7256cd604",
+                "reference": "b9395ba48d3f30d42092cf6ceff75ed7256cd604",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "illuminate/support": "^10.0",
+                "illuminate/support": "^10.0|^11.0",
                 "php": "^8.1",
                 "spatie/flare-client-php": "^1.3.5",
                 "spatie/ignition": "^1.9",
-                "symfony/console": "^6.2.3",
-                "symfony/var-dumper": "^6.2.3"
+                "symfony/console": "^6.2.3|^7.0",
+                "symfony/var-dumper": "^6.2.3|^7.0"
             },
             "require-dev": {
-                "livewire/livewire": "^2.11",
+                "livewire/livewire": "^2.11|^3.3.5",
                 "mockery/mockery": "^1.5.1",
-                "openai-php/client": "^0.3.4",
-                "orchestra/testbench": "^8.0",
-                "pestphp/pest": "^1.22.3",
+                "openai-php/client": "^0.8.1",
+                "orchestra/testbench": "^8.0|^9.0",
+                "pestphp/pest": "^2.30",
                 "phpstan/extension-installer": "^1.2",
                 "phpstan/phpstan-deprecation-rules": "^1.1.1",
                 "phpstan/phpstan-phpunit": "^1.3.3",
@@ -13937,7 +13986,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-09T12:55:26+00:00"
+            "time": "2024-01-04T14:51:24+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -14090,5 +14139,5 @@
         "ext-zip": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.2.0"
 }
