@@ -10,6 +10,8 @@
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+use App\Http\Controllers\custom\payments\PaymentController;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +39,6 @@ Route::get('/send-sms', function () {
 
         // Display success message
         return 'Message sent successfully!';
-
     } catch (\Twilio\Exceptions\TwilioException $e) {
         // Handle specific Twilio exceptions
         return 'Error sending message: ' . $e->getMessage();
@@ -46,3 +47,5 @@ Route::get('/send-sms', function () {
         return 'Error sending message: ' . $e->getMessage();
     }
 });
+
+Route::get('payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');

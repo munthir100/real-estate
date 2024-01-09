@@ -429,5 +429,7 @@
     "Property Has Mortgage": "يوجد رهن على العقار",
     "No Mortgage": "لا يوجد رهن",
     "No Restrictions": "لا توجد التزامات",
-    "commertial_registration_file" : "ملف السجل التجاري"
+    "commertial_registration_file" : "ملف السجل التجاري",
+    "Pay with credit card" : "الدفع عن طريق البطاقة اﻹئتمانية",
+    "Pay with STC Pay" : "الدفع عن طريق STC Pay"
 }

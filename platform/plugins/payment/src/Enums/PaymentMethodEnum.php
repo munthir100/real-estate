@@ -12,6 +12,8 @@ class PaymentMethodEnum extends Enum
 {
     public const COD = 'cod';
     public const BANK_TRANSFER = 'bank_transfer';
+    public const CREDITCARD = 'creditcard';
+    public const STCPAY = 'stcpay';
 
     public static $langPath = 'plugins/payment::payment.methods';
 
