@@ -15,9 +15,12 @@
             <i class="fas fa-file-invoice mr-2"></i>
             <span>{{ trans('plugins/real-estate::dashboard.sidebar_invoices') }}</span>
         </a>
-        <a class="list-group-item list-group-item-action bn bg-warning">
+        <a class="list-group-item list-group-item-action bn bg-warning" data-bs-toggle="modal" data-bs-target="#nafathModal">
             <i class="fas fa-link mr-2"></i>
             <span>{{ trans('plugins/real-estate::dashboard.sidebar_nafath') }}</span>
         </a>
     </div>
 </div>
+
+
+@include('plugins/real-estate::account.modals.nafath')
