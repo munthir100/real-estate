@@ -3,19 +3,20 @@
 namespace Botble\RealEstate\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Services\OtpService;
 use Illuminate\Http\Request;
 use Botble\Theme\Facades\Theme;
 use Botble\Base\Facades\BaseHelper;
 use Botble\Captcha\Facades\Captcha;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Botble\ACL\Traits\RegistersUsers;
 use Botble\Base\Facades\EmailHandler;
 use Botble\RealEstate\Models\Account;
 use Illuminate\Auth\Events\Registered;
 use Botble\SeoHelper\Facades\SeoHelper;
-use App\Services\OtpService;
 use Botble\RealEstate\Models\AccountType;
 use Illuminate\Support\Facades\Validator;
 use Botble\RealEstate\Facades\RealEstateHelper;
@@ -104,14 +105,17 @@ class RegisterController extends Controller
         $account = Account::create($data);
         $this->createAccountType($account);
         event(new Registered($account));
-        $otp = $otpService->generateOtp();
-        if ($data['email']) {
-            $otpService->sendOtpToEmail($account, $otp);
-        }else{
-            $otpService->sendOtpToPhone($account, $otp);
-        }
-        
-        return to_route('public.account.otp.form');
+        Auth::guard('account')->loginUsingId($account->id);
+        return to_route('public.account.dashboard');
+
+        // $otp = $otpService->generateOtp();
+        // if ($data['email']) {
+        //     $otpService->sendOtpToEmail($account, $otp);
+        // }else{
+        //     $otpService->sendOtpToPhone($account, $otp);
+        // }
+
+        // return to_route('public.account.otp.form');
     }
 
     function createAccountType($account)
