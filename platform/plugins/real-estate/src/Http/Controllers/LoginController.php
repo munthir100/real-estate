@@ -63,24 +63,30 @@ class LoginController extends Controller
             ->orWhere('phone', $email)->first();
 
         if ($account && Hash::check(request()->input('password'), $account->password)) {
-            $savedIp = $this->checkIfSavedIp($account, $request->ip());
-            if ($savedIp) {
-                Auth::guard('account')->loginUsingId($account->id);
-
-                return to_route('public.account.dashboard');
-            } else {
-                $otp = $otpService->generateOtp();
-                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $otpService->sendOtpToEmail($account, $otp);
-                } else {
-                    $otpService->sendOtpToPhone($account, $otp);
-                }
-
-                return to_route('public.account.otp.form');
-            }
+            Auth::guard('account')->loginUsingId($account->id);
+            return to_route('public.account.dashboard');
+        } else {
+            return $this->sendFailedLoginResponse();
         }
+        // if ($account && Hash::check(request()->input('password'), $account->password)) {
+        //     $savedIp = $this->checkIfSavedIp($account, $request->ip());
+        //     if ($savedIp) {
+        //         Auth::guard('account')->loginUsingId($account->id);
 
-        return $this->sendFailedLoginResponse();
+        //         return to_route('public.account.dashboard');
+        //     } else {
+        //         $otp = $otpService->generateOtp();
+        //         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        //             $otpService->sendOtpToEmail($account, $otp);
+        //         } else {
+        //             $otpService->sendOtpToPhone($account, $otp);
+        //         }
+
+        //         return to_route('public.account.otp.form');
+        //     }
+        // }
+
+        // return $this->sendFailedLoginResponse();
     }
 
     protected function checkIfSavedIp($account, $ip)
