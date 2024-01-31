@@ -15,37 +15,41 @@ use App\Http\Controllers\custom\payments\PaymentController;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/send-sms', function () {
-    // Access your Twilio credentials from the .env file
-    $account_sid = env('TWILIO_ACCOUNT_SID');
-    $auth_token = env('TWILIO_AUTH_TOKEN');
-    $twilio_phone_number = env('TWILIO_PHONE_NUMBER'); // Your Twilio phone number
+Route::get('/test', function () {
 
-    // Create a Twilio client
-    $twilio = new Client($account_sid, $auth_token);
+    $url = 'https://test-iamservices.semati.sa/nafath/api/v1/client/authorize/';
+    $apiKey = '21c0f19a-fce5-4d4d-b30f-ffd1c3860731';
 
-    // Recipient's phone number (in E.164 format)
-    $recipient_number = '+966544254974'; // Make sure it's in the correct format
+    $data = [
+        'id' => '2345675322',
+        'action' => 'SpRequest',
+        'service' => 'DigitalServiceEnrollmentWithoutBio'
+    ];
 
-    try {
-        // Send the message
-        $message = $twilio->messages->create(
-            $recipient_number,
-            [
-                'from' => $twilio_phone_number,
-                'body' => 'This is a test message from Laravel and Twilio!'
-            ]
-        );
+    $headers = [
+        'Content-Type: Application/json',
+        'Authorization: apikey ' . $apiKey
+    ];
 
-        // Display success message
-        return 'Message sent successfully!';
-    } catch (\Twilio\Exceptions\TwilioException $e) {
-        // Handle specific Twilio exceptions
-        return 'Error sending message: ' . $e->getMessage();
-    } catch (\Exception $e) {
-        // Handle other exceptions
-        return 'Error sending message: ' . $e->getMessage();
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if ($httpCode === 200) {
+        // Request was successful
+        echo "Response: $response";
+    } else {
+        // Request failed
+        dd("Error: HTTP code $httpCode, Response: $response");
     }
+
+    curl_close($ch);
 });
 
 Route::get('payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
