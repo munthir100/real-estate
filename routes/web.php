@@ -15,6 +15,9 @@ use App\Http\Controllers\custom\payments\PaymentController;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/test','test');
+Route::view('/test', 'test');
+Route::post('/dd', function () {
+    return response()->json('hi i am work');
+});
 
 Route::get('payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');

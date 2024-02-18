@@ -80,11 +80,14 @@
                     method: 'POST',
                     headers: {
                         'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
                         'Content-Type': 'application/json',
-                        'Authorization': apiKey
+                        'Authorization': apiKey,
+                        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
                     },
                     body: JSON.stringify(data)
                 });
+                console.log(response);
 
                 const responseData = await response.json();
                 console.log(responseData);
