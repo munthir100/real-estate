@@ -51,57 +51,37 @@
 </head>
 
 <body>
-    <button type="submit" id="sendButton" onclick="sendRequest()">
+    <button type="submit" id="sendButton">
         <span class="spinner" id="spinner"></span>
         <p id="text">Send Request</p>
     </button>
 
-    <script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="module">
         const sendButton = document.getElementById('sendButton');
-        const spinner = document.getElementById('spinner');
-        const text = document.getElementById('text');
 
-        async function sendRequest() {
+        sendButton.addEventListener('click', async function () {
+            // Disable the button and show the spinner
+            sendButton.disabled = true;
+            spinner.style.display = 'inline-block';
+            text.style.display = 'none';
+
             try {
-                // Disable the button and show the spinner during the request
-                sendButton.disabled = true;
-                spinner.style.display = 'inline-block';
-                text.style.display = 'none'
-                const url = 'https://test-iamservices.semati.sa/nafath/api/v1/client/authorize/';
-                const apiKey = 'apikey 21c0f19a-fce5-4d4d-b30f-ffd1c3860731';
+                // Make a POST request using Axios
+                const response = await axios.post('/test');
 
-                const data = {
-                    id: '24324323334',
-                    action: 'SpRequest',
-                    service: 'DigitalServiceEnrollmentWithoutBio'
-                };
-
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-                        'Content-Type': 'application/json',
-                        'Authorization': apiKey,
-                        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
-                    },
-                    body: JSON.stringify(data)
-                });
-                console.log(response);
-
-                const responseData = await response.json();
-                console.log(responseData);
-
+                // Handle the response data here
+                console.log('Response:', response.data);
             } catch (error) {
                 console.error('Error:', error);
-
             } finally {
                 // Re-enable the button and hide the spinner after the request
                 sendButton.disabled = false;
                 spinner.style.display = 'none';
                 text.style.display = 'block';
             }
-        }
+        });
     </script>
 </body>
 
